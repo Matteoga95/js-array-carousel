@@ -18,26 +18,26 @@ const slides = [
 ];
 
 //mi seleziono il container a cui aggiungere le slide
-const slidesElementParent = document.querySelector(".container")
+const slidesElementParent = document.querySelector(".container");
 
 //loop dentro l' array 
 for (let i = 0; i < slides.length; i++) {
 
     //percorso dell'img
-    const slideurl = slides[i]
+    const slideurl = slides[i];
 
     //creo l'elemento
     const imgEl = document.createElement('img');
 
-    imgEl.src = slideurl
+    imgEl.src = slideurl;
 
     //se è indice 0 gli metto la classe active
     if (i === 0) {
-        imgEl.classList.add("active")
+        imgEl.classList.add("active");
     }
 
     //lo aggiungo all html
-    slidesElementParent.insertAdjacentElement("beforeend", imgEl)
+    slidesElementParent.insertAdjacentElement("beforeend", imgEl);
 
 }
 
@@ -55,21 +55,28 @@ arrowUp.addEventListener("click", function () {
 
     //per prendere la lista di slide
     //per tutte le immagini presenti nel blocco
-    const slidesAll = document.querySelectorAll(".container > img")
+    const slidesAll = document.querySelectorAll(".container > img");
 
-    const activeSlide = slidesAll[activeSlideCounter]
+    const activeSlide = slidesAll[activeSlideCounter];
 
     //tolgo classe active a quella con indice attiva
     activeSlide.classList.remove("active");
 
     //incremento active slide di uno 
-    activeSlideCounter += 1;
+     //aggiungo un if se l'img è già indice massimo
+     if (activeSlideCounter === slidesAll.length -1){
+
+        activeSlideCounter = 0;
+    } else{
+        activeSlideCounter += 1;
+    }
+    
 
     //selezionono l' immagine dopo 
-    const nextSlide = slidesAll[activeSlideCounter]
+    const nextSlide = slidesAll[activeSlideCounter];
 
     //e gli applico la classe
-    nextSlide.classList.add("active")
+    nextSlide.classList.add("active");
 
 
 })
@@ -81,21 +88,29 @@ arrowDown.addEventListener("click", function () {
 
     //per prendere la lista di slide
     //per tutte le immagini presenti nel blocco
-    const slidesAll = document.querySelectorAll(".container > img")
+    const slidesAll = document.querySelectorAll(".container > img");
 
-    const activeSlide = slidesAll[activeSlideCounter]
+    const activeSlide = slidesAll[activeSlideCounter];
 
     //tolgo classe active a quella con indice attiva
     activeSlide.classList.remove("active");
 
     //incremento active slide di uno 
-    activeSlideCounter -= 1;
+
+    //aggiungo un if se l'img è già indice 0
+    if (activeSlideCounter === 0){
+
+        activeSlideCounter = slidesAll.length -1;
+    } else{
+        activeSlideCounter -= 1;
+    }
+    
 
     //selezionono l' immagine dopo 
-    const nextSlide = slidesAll[activeSlideCounter]
+    const nextSlide = slidesAll[activeSlideCounter];
 
     //e gli applico la classe
-    nextSlide.classList.add("active")
+    nextSlide.classList.add("active");
 
 
 })
